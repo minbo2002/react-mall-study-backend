@@ -15,7 +15,6 @@ import org.zerock.mallapi.domain.todo.entity.Todo;
 import org.zerock.mallapi.presentation.dto.TodoDto;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -116,7 +115,7 @@ class TodoRepositoryTest {
             .content("content")
             .writer("writer")
             .complete(false)
-            .dueDate(LocalDateTime.now())
+            .dueDate(LocalDate.now())
             .build();
 
         Long todoId = todoWriteService.register(create.toTodoCreate());

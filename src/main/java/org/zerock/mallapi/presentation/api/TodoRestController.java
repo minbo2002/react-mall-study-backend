@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.zerock.mallapi.domain.PageRequestDTO;
+import org.zerock.mallapi.domain.PageResponseDTO;
 import org.zerock.mallapi.domain.todo.TodoReadService;
 import org.zerock.mallapi.domain.todo.TodoWriteService;
 import org.zerock.mallapi.domain.todo.dto.TodoCreate;
@@ -39,6 +41,15 @@ public class TodoRestController {
 
         ApiResponse<TodoDto.Info> response = ApiResponse.ok(todoInfo);
         return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @GetMapping
+    public ResponseEntity<ApiResponse<PageResponseDTO<TodoDto.Info>>> list(PageRequestDTO pageRequestDTO) {
+        PageResponseDTO<TodoDto.Info> todoInfos = todoReadService.list(pageRequestDTO);
+
+        ApiResponse<PageResponseDTO<TodoDto.Info>> response = ApiResponse.ok(todoInfos);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+
     }
 
     @PutMapping("/{id}")
