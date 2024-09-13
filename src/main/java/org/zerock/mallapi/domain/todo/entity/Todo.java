@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.zerock.mallapi.domain.BaseTimeEntity;
 import org.zerock.mallapi.domain.todo.dto.TodoUpdate;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -28,7 +29,7 @@ public class Todo extends BaseTimeEntity {
 
     private Boolean complete;
 
-    private LocalDateTime dueDate;
+    private LocalDate dueDate;
 
     @Builder
     private Todo(
@@ -37,7 +38,7 @@ public class Todo extends BaseTimeEntity {
             String content,
             String writer,
             Boolean complete,
-            LocalDateTime dueDate
+            LocalDate dueDate
     ) {
         this.id = id;
         this.title = title;
@@ -48,9 +49,9 @@ public class Todo extends BaseTimeEntity {
     }
 
     public void update(TodoUpdate todoUpdate) {
-        this.title = todoUpdate.getTitle();
-        this.content = todoUpdate.getContent();
-        this.complete = todoUpdate.getComplete();
-        this.dueDate = todoUpdate.getDueDate();
+        this.title = todoUpdate.title();
+        this.content = todoUpdate.content();
+        this.complete = todoUpdate.complete();
+        this.dueDate = todoUpdate.dueDate();
     }
 }

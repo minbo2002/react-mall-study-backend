@@ -10,7 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.zerock.mallapi.domain.todo.TodoWriteService;
-import org.zerock.mallapi.domain.todo.dto.TodoCreate;
 import org.zerock.mallapi.domain.todo.dto.TodoUpdate;
 import org.zerock.mallapi.domain.todo.entity.Todo;
 import org.zerock.mallapi.presentation.dto.TodoDto;
@@ -18,7 +17,7 @@ import org.zerock.mallapi.presentation.dto.TodoDto;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @Slf4j
@@ -40,7 +39,7 @@ class TodoRepositoryTest {
                     .content("content..."+i)
                     .writer("writer..."+i)
                     .complete(false)
-                    .dueDate(LocalDateTime.now())
+                    .dueDate(LocalDate.now())
                     .build();
 
             todoRepository.save(todo);
@@ -73,9 +72,8 @@ class TodoRepositoryTest {
         TodoUpdate todoUpdate = TodoUpdate.builder()
                 .title("title update...")
                 .content("content update...")
-                .writer("writer update...")
                 .complete(false)
-                .dueDate(LocalDateTime.now())
+                .dueDate(LocalDate.now())
                 .build();
 
         todo.update(todoUpdate);

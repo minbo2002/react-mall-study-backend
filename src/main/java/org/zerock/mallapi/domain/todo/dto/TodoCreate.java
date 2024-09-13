@@ -3,7 +3,7 @@ package org.zerock.mallapi.domain.todo.dto;
 import lombok.Builder;
 import org.zerock.mallapi.domain.todo.entity.Todo;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Builder
 public record TodoCreate(
@@ -11,7 +11,7 @@ public record TodoCreate(
         String content,
         String writer,
         Boolean complete,
-        LocalDateTime dueDate
+        LocalDate dueDate
 ) {
     public Todo toTodo() {
         return Todo.builder()
