@@ -1,4 +1,4 @@
-package org.zerock.mallapi.common;
+package org.zerock.mallapi.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;

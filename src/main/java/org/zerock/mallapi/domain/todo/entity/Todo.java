@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.zerock.mallapi.common.BaseTimeEntity;
+import org.zerock.mallapi.domain.BaseTimeEntity;
+import org.zerock.mallapi.domain.todo.dto.TodoUpdate;
 
 import java.time.LocalDateTime;
 
@@ -23,16 +24,33 @@ public class Todo extends BaseTimeEntity {
 
     private String content;
 
+    private String writer;
+
     private Boolean complete;
 
     private LocalDateTime dueDate;
 
     @Builder
-    private Todo(Long id, String title, String content, Boolean complete, LocalDateTime dueDate) {
+    private Todo(
+            Long id,
+            String title,
+            String content,
+            String writer,
+            Boolean complete,
+            LocalDateTime dueDate
+    ) {
         this.id = id;
         this.title = title;
         this.content = content;
+        this.writer = writer;
         this.complete = complete;
         this.dueDate = dueDate;
+    }
+
+    public void update(TodoUpdate todoUpdate) {
+        this.title = todoUpdate.getTitle();
+        this.content = todoUpdate.getContent();
+        this.complete = todoUpdate.getComplete();
+        this.dueDate = todoUpdate.getDueDate();
     }
 }
