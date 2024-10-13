@@ -34,9 +34,9 @@ class TodoRepositoryTest {
 
         for(int i=0; i<100; i++) {
             Todo todo = Todo.builder()
-                    .title("title..."+i)
-                    .content("content..."+i)
-                    .writer("writer..."+i)
+                    .title("title..."+(i+1))
+                    .content("content..."+(i+1))
+                    .writer("writer..."+(i+1))
                     .complete(false)
                     .dueDate(LocalDate.now())
                     .build();
@@ -114,7 +114,6 @@ class TodoRepositoryTest {
             .title("title")
             .content("content")
             .writer("writer")
-            .complete(false)
             .dueDate(LocalDate.now())
             .build();
 

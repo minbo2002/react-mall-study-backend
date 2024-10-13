@@ -15,7 +15,6 @@ public class TodoDto {
         String title,
         String content,
         String writer,
-        Boolean complete,
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
         LocalDate dueDate
     ) {
@@ -24,7 +23,7 @@ public class TodoDto {
                 .title(this.title)
                 .content(this.content)
                 .writer(this.writer)
-                .complete(this.complete)
+                .complete(false)
                 .dueDate(this.dueDate)
                 .build();
         }

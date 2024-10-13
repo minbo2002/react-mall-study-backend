@@ -13,6 +13,8 @@ import org.zerock.mallapi.domain.todo.dto.TodoRead;
 import org.zerock.mallapi.presentation.ApiResponse;
 import org.zerock.mallapi.presentation.dto.TodoDto;
 
+import java.util.Map;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/todos")
@@ -22,13 +24,13 @@ public class TodoRestController {
     private final TodoReadService todoReadService;
 
     @PostMapping
-    public ResponseEntity<ApiResponse<String>> register(
+    public ResponseEntity<ApiResponse<Map<String, Long>>> register(
             @RequestBody TodoDto.Create create
     ) {
         TodoCreate todoCreate = create.toTodoCreate();
         Long todoId = todoWriteService.register(todoCreate);
 
-        ApiResponse<String> response = ApiResponse.ok("Todo create success. todoId:"+todoId);
+        ApiResponse<Map<String, Long>> response = ApiResponse.ok(Map.of("id", todoId));  // Modal 창에 todoId 값을 전달하기위한 key 값으로 id 사용
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
@@ -43,7 +45,7 @@ public class TodoRestController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @GetMapping
+    @GetMapping("/list")
     public ResponseEntity<ApiResponse<PageResponseDTO<TodoDto.Info>>> list(PageRequestDTO pageRequestDTO) {
         PageResponseDTO<TodoDto.Info> todoInfos = todoReadService.list(pageRequestDTO);
 

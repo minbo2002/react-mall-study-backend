@@ -35,7 +35,7 @@ public class TodoReadService {
         Pageable pageable = PageRequest.of(
                 pageRequestDTO.getPage()-1,
                 pageRequestDTO.getSize(),
-                Sort.by("id").descending()
+                Sort.by("id").ascending()
         );
 
         Page<Todo> todos = todoRepository.findAll(pageable);
